@@ -13,13 +13,5 @@ public class Techs implements ContentList {
     @Override
     public void load() {
         nodes=new ArrayList<>();
-        /*basic_alloy_smelting=new TechNode("@basic-alloy-smelting","alloy-furnace",nodes){{
-            information="@basic-alloy-smelting-des";
-            runnable=()->{
-                basic_alloy_smelting.displayDialog(new ItemStack(Items.copper,20),new ItemStack(Items.coal,20));
-            };
-            contents.add(Blocks.alloy_pot);
-            done=()->{Blocks.alloy_pot.unlock();};
-        }};*/
     }
 }

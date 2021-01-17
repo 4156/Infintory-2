@@ -28,6 +28,11 @@ public class TechNode{
         this.name=name;
         list.add(this);
     }
+    public void basicOpen(ItemStack... stacks){
+        runnable=()->{
+            this.displayDialog(stacks);
+        };
+    }
     public void displayDialog(ItemStack... stacks){
         this.stacks=stacks;
         TechDialog dialog=new TechDialog("Tech Information",this){{ addCloseButton();
