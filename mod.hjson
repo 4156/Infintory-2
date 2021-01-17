@@ -1,8 +1,8 @@
-name: "example-java-mod"
-displayName: "Example Java Mod"
-author: "Anuke"
+name: "age"
+displayName: "无限时代"
+author: "Ysnh"
 main: "infintory.Infintory"
-description: "A jar mod."
+description: "一个模组，添加了一些内容"
 version: 1.0
-minGameVersion: 105
+minGameVersion: 122
 

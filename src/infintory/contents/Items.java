@@ -1,27 +1,21 @@
 package infintory.contents;
 
+import arc.graphics.Color;
 import mindustry.ctype.ContentList;
-import mindustry.graphics.MultiPacker;
 import mindustry.type.Item;
 
+import java.util.ArrayList;
+
 public class Items implements ContentList {
-    public static Item
-    //Tech
-    red_pack,green_pack,yellow_pack,blue_pack;
-    ;
+    public static Item compact_alloy;
+    public ArrayList<Item> items=new ArrayList<>();
     @Override
     public void load() {
-        red_pack=new Item("red-research-pack"){{
-            description="Produce red scientific research points for researching powerful weapons";
+        compact_alloy=new Item("compact-alloy"){{
+            description="The basic alloy cast by copper and lead has good hardness and toughness";
+            color= Color.brick;
+            clearUnlock();
         }};
-        yellow_pack=new Item("yellow-research-pack"){{
-            description="Produce yellow research points, used to increase industrial production capacity and new materials";
-        }};
-        green_pack=new Item("green-research-pack"){{
-            description="Produce green technology points for research on biotechnology and planning";
-        }};
-        blue_pack=new Item("blue-research-pack"){{
-            description="Produce blue technology points for research on energy production and physics applications";
-        }};
+        items.add(compact_alloy);
     }
 }

@@ -1,23 +1,29 @@
 package infintory.contents;
 
+import arc.Core;
+import arc.scene.style.Drawable;
 import infintory.types.logic.Recipe;
-import infintory.types.logic.RecipeType;
+import mindustry.content.Items;
+import mindustry.content.Liquids;
 import mindustry.ctype.ContentList;
 import mindustry.type.ItemStack;
+import mindustry.type.LiquidStack;
+
+import java.util.Arrays;
 
 public class Recipes implements ContentList {
-    public static Recipe
-    //packs
-    red_pack,green_pack,yellow_pack,blue_pack
-    ;
-    public Recipes(){
-
-    }
+    public static Recipe compact_alloy;
     @Override
     public void load() {
-        red_pack=new Recipe(new ItemStack(Items.red_pack,1),new ItemStack(mindustry.content.Items.copper,1),new ItemStack(mindustry.content.Items.lead,1));
-        green_pack=new Recipe(new ItemStack(Items.green_pack,1),new ItemStack(mindustry.content.Items.graphite,1),new ItemStack(mindustry.content.Items.silicon,1));
-        yellow_pack=new Recipe(new ItemStack(Items.yellow_pack,1),new ItemStack(mindustry.content.Items.plastanium,1),new ItemStack(mindustry.content.Items.titanium,1));
-        blue_pack=new Recipe(new ItemStack(Items.blue_pack,1),new ItemStack(mindustry.content.Items.coal,1),new ItemStack(mindustry.content.Items.phasefabric,1));
+        compact_alloy=new Recipe("compact-alloy"){{
+            time=180;
+            itemInput.addAll(Arrays.asList(give(new ItemStack(Items.copper,2),new ItemStack(Items.lead,1))));
+            heatConsume=10;
+            itemOutput.add(new ItemStack(infintory.contents.Items.compact_alloy,1));
+            alwaysUnlocked=true;
+        }};
+    }
+    public ItemStack[] give(ItemStack... stacks){
+        return stacks;
     }
 }

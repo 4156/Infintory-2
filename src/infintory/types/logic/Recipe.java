@@ -1,65 +1,62 @@
 package infintory.types.logic;
 
+import arc.scene.style.Drawable;
+import mindustry.ctype.ContentType;
+import mindustry.ctype.UnlockableContent;
+import mindustry.gen.Icon;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
+import mindustry.world.meta.Stat;
 
-public class Recipe {
-    public RecipeType type;
-    public ItemStack[] input;
-    public ItemStack output;
-    public LiquidStack inp;
-    public LiquidStack oup;
-    public Recipe(ItemStack output,ItemStack... input){
-        this.output=output;
-        this.input=input;
-        type=RecipeType.ItemToItem;
-    }
-    public Recipe(LiquidStack oup,LiquidStack inp){
-        this.oup=oup;
-        this.inp=inp;
-        type=RecipeType.LiquidToLiquid;
-    }
-    public Recipe(RecipeType type){
-        this.type=type;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Recipe extends UnlockableContent {
+    public int time=60;
+    public boolean isLocked=true;
+    public ArrayList<ItemStack> itemInput,itemOutput;
+    public LiquidStack liquidInput,liquidOutput;
+    public int heatConsume=0;
+    public int powerUsage=0;
+    public String drawable;
+    public Recipe(String name){
+        super(name);
+        itemInput=new ArrayList<>();
+        itemOutput=new ArrayList<>();
     }
 
-    public void setOutput(ItemStack output) {
-        this.output = output;
+    @Override
+    public ContentType getContentType() {
+        return ContentType.error;
     }
 
-    public void setInput(ItemStack[] input) {
-        this.input = input;
+    @Override
+    public void setStats() {
+        for (int i = 0; i < itemInput.size(); i++) {
+            stats.add(Stat.input, itemInput.get(i));
+        }
+        if(liquidInput!=null) {
+            stats.add(Stat.input,liquidInput.liquid,liquidInput.amount,false);
+        }
+        for (int i = 0; i < itemOutput.size(); i++) {
+            stats.add(Stat.output, itemInput.get(i));
+        }
+        if(liquidOutput!=null){
+            stats.add(Stat.output,liquidOutput.liquid,liquidOutput.amount,false);
+        }
+        stats.add(Stat.input,"@time-usage"+" "+time);
     }
 
-    public ItemStack getOutput() {
-        return output;
+    public void addInputItems(ItemStack... stacks){
+        itemInput.addAll(Arrays.asList(stacks));
     }
-
-    public ItemStack[] getInput() {
-        return input;
+    public void addOutputItems(ItemStack... stacks){
+        itemOutput.addAll(Arrays.asList(stacks));
     }
-
-    public void setType(RecipeType type) {
-        this.type = type;
+    public void addInputLiquid(LiquidStack stack){
+        liquidInput=stack;
     }
-
-    public LiquidStack getOup() {
-        return oup;
-    }
-
-    public LiquidStack getInp() {
-        return inp;
-    }
-
-    public RecipeType getType() {
-        return type;
-    }
-
-    public void setInp(LiquidStack inp) {
-        this.inp = inp;
-    }
-
-    public void setOup(LiquidStack oup) {
-        this.oup = oup;
+    public void addOutputLiquid(LiquidStack stack){
+        liquidOutput=stack;
     }
 }
